@@ -4,7 +4,7 @@ return {
         GOTOID = 6933626061,
         GameName = "Tlk Prison",
         Script = function() 
-            loadstring(game:HttpGet('https://raw.githubusercontent.com/voidy434343/Zeouron-Mainiatic/main/Tlk%20prison%20obf.txt'))()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/Zeuxtronic/Zeouron/main/tlk%20prison%20Obfuscated.txt'))()
         end
     },
 	{
@@ -12,7 +12,7 @@ return {
         GOTOID = 5561268850,
         GameName = "Randomly Generated Droids",
         Script = function() 
-            loadstring(game:HttpGet('https://raw.githubusercontent.com/voidy434343/Zeouron-Mainiatic/main/RGD.lua'))()
-        end
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/Zeuxtronic/Zeouron/main/RGD%20Obfuscated.txt'))()
+	end
     }
 }
