@@ -30,6 +30,14 @@ end
 if not isfile("Zeouron/Settings/Size.txt") then
 	writefile("Zeouron/Settings/Size.txt", "1")
 end
+if not isfile("Zeouron/Settings/Developer.txt") then
+	writefile("Zeouron/Settings/Developer.txt", "false")
+end
+
+Dev = false
+if readfile("Zeouron/Settings/Developer.txt") == "true" then
+    Dev = true
+end
 
 constructcolor = function(str)
     local split = string.split(str,",")
@@ -171,6 +179,13 @@ Exec.Text = "Execute"
 
 Exec.MouseButton1Click:Connect(function()
     G:Destroy()
-    scriptfunc()
+    if not Dev then
+        local success, result = pcall(scriptfunc)
+		if not success then
+    		print(result)
+		end
+    else
+    	scriptfunc()
+    end
 end)
 end
