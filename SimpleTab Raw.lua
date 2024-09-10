@@ -78,6 +78,7 @@ for i,v in pairs(game.CoreGui:GetChildren()) do
         v:Destroy()
    	end
 end
+
 for i,v in pairs(lp.PlayerGui:GetChildren()) do
     if v.Name == Data.ScriptName then
         v:Destroy()
@@ -276,13 +277,14 @@ return {
           		ButtonFrame.Name = Buttons
           
           		local TextFrame = Instance.new("TextButton", ButtonFrame)
-       			TextFrame.Position = UDim2.new(0,0,0,0)
-        		TextFrame.Size = UDim2.new(0,175,0,30)
+       			TextFrame.Position = UDim2.new(0,8,0,0)
+        		TextFrame.Size = UDim2.new(0,125,0,30)
         		TextFrame.BackgroundTransparency = 1
           		TextFrame.TextColor3 = Data.TextColor
         		TextFrame.TextScaled = true
     			TextFrame.Text = name
     			TextFrame.Font = Data.Font 
+       			TextFrame.TextXAlignment = "Left"
 
        			TextFrame.MouseButton1Click:Connect(function()
               		func()
@@ -301,13 +303,14 @@ return {
           		ButtonFrame.Name = Buttons  
 
           		local TextFrame = Instance.new("TextButton", ButtonFrame)
-       			TextFrame.Position = UDim2.new(0,0,0,0)
-        		TextFrame.Size = UDim2.new(0,175,0,30)
+       			TextFrame.Position = UDim2.new(0,8,0,0)
+        		TextFrame.Size = UDim2.new(0,125,0,30)
         		TextFrame.BackgroundTransparency = 1
           		TextFrame.TextColor3 = Data.TextColor
         		TextFrame.TextScaled = true
     			TextFrame.Text = name
     			TextFrame.Font = Data.Font 
+       			TextFrame.TextXAlignment = "Left"
        
        			local KeybindText = Instance.new("TextLabel")
     			KeybindText.Parent = ButtonFrame
@@ -426,13 +429,14 @@ return {
        			arrow.Rotation = 90
             
           		local TextFrame = Instance.new("TextButton", ButtonFrame)
-       			TextFrame.Position = UDim2.new(0,0,0,0)
-        		TextFrame.Size = UDim2.new(0,175,0,30)
+       			TextFrame.Position = UDim2.new(0,8,0,0)
+        		TextFrame.Size = UDim2.new(0,125,0,30)
         		TextFrame.BackgroundTransparency = 1
           		TextFrame.TextColor3 = Data.TextColor
         		TextFrame.TextScaled = true
     			TextFrame.Text = name
     			TextFrame.Font = Data.Font 
+       			TextFrame.TextXAlignment = "Left"
        
        			LoadTable = function(str, table)
               		local LastPos = 37
@@ -568,15 +572,16 @@ return {
         		ButtonFrame.BackgroundTransparency = 1
           		ButtonFrame.Name = Buttons
           
-          		local TextFrame = Instance.new("TextBox", ButtonFrame)
-       			TextFrame.Position = UDim2.new(0,0,0,0)
-        		TextFrame.Size = UDim2.new(0,175,0,30)
+          		local TextFrame = Instance.new("TextButton", ButtonFrame)
+       			TextFrame.Position = UDim2.new(0,8,0,0)
+        		TextFrame.Size = UDim2.new(0,125,0,30)
         		TextFrame.BackgroundTransparency = 1
           		TextFrame.TextColor3 = Data.TextColor
         		TextFrame.TextScaled = true
-          		TextFrame.TextSize = 25
     			TextFrame.Text = name
     			TextFrame.Font = Data.Font 
+       			TextFrame.TextXAlignment = "Left"
+          		TextFrame.TextSize = 25
        
        			local BoxContent = default
           
@@ -609,13 +614,14 @@ return {
           		OnEffect.Visible = false
           
           		local TextFrame = Instance.new("TextButton", ButtonFrame)
-       			TextFrame.Position = UDim2.new(0,0,0,0)
-        		TextFrame.Size = UDim2.new(0,175,0,30)
+       			TextFrame.Position = UDim2.new(0,8,0,0)
+        		TextFrame.Size = UDim2.new(0,125,0,30)
         		TextFrame.BackgroundTransparency = 1
           		TextFrame.TextColor3 = Data.TextColor
         		TextFrame.TextScaled = true
     			TextFrame.Text = name
     			TextFrame.Font = Data.Font 
+       			TextFrame.TextXAlignment = "Left"
        
        			local switchon = false
           
