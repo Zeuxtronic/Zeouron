@@ -572,7 +572,7 @@ return {
         		ButtonFrame.BackgroundTransparency = 1
           		ButtonFrame.Name = Buttons
           
-          		local TextFrame = Instance.new("TextButton", ButtonFrame)
+          		local TextFrame = Instance.new("TextBox", ButtonFrame)
        			TextFrame.Position = UDim2.new(0,8,0,0)
         		TextFrame.Size = UDim2.new(0,125,0,30)
         		TextFrame.BackgroundTransparency = 1
@@ -605,14 +605,7 @@ return {
         		ButtonFrame.Size = UDim2.new(0,175,0,30)
         		ButtonFrame.BackgroundTransparency = 1
           		ButtonFrame.Name = Buttons
-            
-            	local OnEffect = Instance.new("Frame", ButtonFrame)
-       			OnEffect.Position = UDim2.new(0,0,0,0)
-        		OnEffect.Size = UDim2.new(0,175,0,30)
-          		OnEffect.BackgroundColor3 = Data.Color
-        		OnEffect.BorderColor3 = Data.Color
-          		OnEffect.Visible = false
-          
+
           		local TextFrame = Instance.new("TextButton", ButtonFrame)
        			TextFrame.Position = UDim2.new(0,8,0,0)
         		TextFrame.Size = UDim2.new(0,125,0,30)
@@ -622,18 +615,29 @@ return {
     			TextFrame.Text = name
     			TextFrame.Font = Data.Font 
        			TextFrame.TextXAlignment = "Left"
+          
+          		local Switch = Instance.new("TextButton")
+    			Switch.Parent = ButtonFrame
+    			Switch.Size = UDim2.new(0,20,0,20)
+   				Switch.Position = UDim2.new(0,147,0,5)
+    			Switch.BackgroundColor3 = Data.DarkC
+    			Switch.BorderColor3 = Switch.BackgroundColor3
+    			Switch.ZIndex = 10
+    			Switch.Text = ""
+     			Switch.AutoButtonColor = false
+     
+     			local SwitchRound = Instance.new("UICorner")
+				SwitchRound.Parent = Switch
+				SwitchRound.CornerRadius = UDim.new(0.07,0.07)
        
        			local switchon = false
-          
-       			TextFrame.MouseButton1Click:Connect(function()
+       			Switch.MouseButton1Click:Connect(function()
               		if switchon then
                     	switchon = false
-                     	OnEffect.Visible = false
-                      	TextFrame.TextColor3 = Data.TextColor
+                     	Switch.BackgroundColor3 = Data.DarkC
                 	else
                 		switchon = true
-                     	OnEffect.Visible = true
-                      	TextFrame.TextColor3 = Data.BgColor
+                     	Switch.BackgroundColor3 = Data.Color
                     end
                 	func(switchon)
              	end)
