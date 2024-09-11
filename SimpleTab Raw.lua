@@ -59,15 +59,15 @@ downsize = function(descendant)
     if isPhone() then
         print("downsize")
     descendant.Size = UDim2.new(
-            		descendant.Size.X.Scale / 1.5,
+            		descendant.Size.X.Scal,
         	    	descendant.Size.X.Offset / 1.5, 
-        	    	descendant.Size.Y.Scale / 1.5, 
+        	    	descendant.Size.Y.Scale, 
       	     		descendant.Size.Y.Offset / 1.5
        			)
      			descendant.Position = UDim2.new(
-            		descendant.Position.X.Scale / 1.5, 
+            		descendant.Position.X.Scale, 
             		descendant.Position.X.Offset / 1.5, 
-            		descendant.Position.Y.Scale / 1.5, 
+            		descendant.Position.Y.Scale, 
             		descendant.Position.Y.Offset / 1.5
         		)
     end
@@ -649,19 +649,94 @@ return {
 		for i,descendant in pairs(G:GetDescendants()) do
     		if descendant:IsA("GuiObject") then
        			descendant.Size = UDim2.new(
-            		descendant.Size.X.Scale / 1.5,
+            		descendant.Size.X.Scale,
         	    	descendant.Size.X.Offset / 1.5, 
-        	    	descendant.Size.Y.Scale / 1.5, 
+        	    	descendant.Size.Y.Scale, 
       	     		descendant.Size.Y.Offset / 1.5
        			)
      			descendant.Position = UDim2.new(
-            		descendant.Position.X.Scale / 1.5, 
+            		descendant.Position.X.Scale, 
             		descendant.Position.X.Offset / 1.5, 
-            		descendant.Position.Y.Scale / 1.5, 
+            		descendant.Position.Y.Scale, 
             		descendant.Position.Y.Offset / 1.5
         		)
     		end
 		end
 		end
-	end
+	end,
+	DownValues = function(table)
+     	if typeof(table) == "table" then
+          	for i,v in pairs(G:GetChildren()) do
+            	if v.Name == "DownValue" then
+                	v:Destroy()
+                end
+            end
+    		for i,v in pairs(table) do
+        		Value = Instance.new("TextLabel", G)
+          		Value.Name = "DownValue"
+            	Value.Position = UDim2.new(0.75,0,1 -(i *0.03),0)
+             	Value.Size = UDim2.new(0.25,0,0.03,0)
+              	Value.TextScaled = true
+               	Value.Text = tostring(v)
+                Value.Font = Data.Font
+                Value.TextColor3 = Data.Color
+                Value.TextStrokeColor3 = Data.DarkC
+                Value.BackgroundTransparency = 1
+                Value.TextXAlignment = "Right"
+        	end
+     	else
+      		warn("Value must be a Table")
+     	end
+    end,
+Popup = function(string, pos)
+    for i,v in pairs(G:GetChildren()) do
+        if v.Name == "info" then
+        	v:Destroy()
+        end
+    end
+	local TextLabel = Instance.new("TextButton")
+	TextLabel.Parent = G
+	TextLabel.Size = UDim2.new(1,0,0.035,0)
+ 	TextLabel.Position = UDim2.new(0,0,0.88,0)
+ 	if pos == "Top" then
+        TextLabel.Position = UDim2.new(0,0,0,0)
+    end
+	if pos == "Middle" then
+        TextLabel.Position = UDim2.new(0,0,0.5 -(0.035 /2),0)
+    end
+	if pos == "Bottom" then
+        TextLabel.Position = UDim2.new(0,0,0.88,0)
+    end
+	TextLabel.TextScaled = true
+	TextLabel.BackgroundTransparency = 1
+	TextLabel.TextColor3 = Data.TextColor
+	TextLabel.Name = "info"
+	TextLabel.Text = string
+ 	TextLabel.TextStrokeTransparency = 0
+  	TextLabel.TextStrokeColor3 = Data.DarkC
+   	TextLabel.Font = Data.Font
+    TextLabel.AutoButtonColor = false
+ 
+ 	spawn(function()
+ 	local msg = ""
+ 	for i,v in pairs(string.split(string,"")) do
+    	msg = msg..v
+     	TextLabel.Text = msg
+      	wait(0.02)
+    end
+	wait(3.5)
+ 	for i,v in pairs(string.split(string,"")) do
+     	Split = string.split(TextLabel.Text,"")
+        table.remove(Split, #Split)
+        rmsg = ""
+        for i,v in pairs(Split) do
+            rmsg = rmsg..v
+     		TextLabel.Text = rmsg
+        end
+    	
+      	wait(0.01)
+    end
+	TextLabel:Destroy()
+ 	end)
+end
 }
