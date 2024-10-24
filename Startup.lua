@@ -197,6 +197,12 @@ Debug.NewButton("RESET DATA", function()
     writefile("Zeouron/Settings/Size.txt", "1")
 end)
 
+Debug.NewButton("CLEAR CACHE", function()
+    for i,v in pairs(listfiles("Zeouron/CacheImage")) do
+    	delfile(v)
+    end
+end)
+
 Debug.NewButton("PRINT DATA", function()
 	print("Color: "..readfile("Zeouron/Settings/MainColor.txt"))
  	print("BgColor: "..readfile("Zeouron/Settings/BgColor.txt"))
@@ -308,6 +314,8 @@ Exec.MouseButton1Click:Connect(function()
         local success, result = pcall(scriptfunc)
 		if not success then
     		web("<@&1201552332022882315> Error Happened while trying to execute a the Zeouron Script: \n Game: "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name.."\n Username: "..game.Players.LocalPlayer.Name.."\n Executor: "..identifyexecutor().."\n Error: \n"..result, "https://discord.com/api/webhooks/1280573042002493523/UxQcqWif7aYBXEZjTuD2mXsRPng9chQahTCvV9OY-x7vfATRYNoJHZyu8U_w6jlrqdYL")
+      	else
+       		scriptfunc()
 		end
     else
     	scriptfunc()
