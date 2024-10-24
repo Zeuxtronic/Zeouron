@@ -305,12 +305,12 @@ Exec.MouseButton1Click:Connect(function()
 	wait(1.5)
  	G:Destroy()
     if not Dev then
-        local success, result = pcall(function() loadstring(scriptfunc)() end)
+        local success, result = pcall(scriptfunc)
 		if not success then
     		web("<@&1201552332022882315> Error Happened while trying to execute a the Zeouron Script: \n Game: "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name.."\n Username: "..game.Players.LocalPlayer.Name.."\n Executor: "..identifyexecutor().."\n Error: \n"..result, "https://discord.com/api/webhooks/1280573042002493523/UxQcqWif7aYBXEZjTuD2mXsRPng9chQahTCvV9OY-x7vfATRYNoJHZyu8U_w6jlrqdYL")
 		end
     else
-    	loadstring(scriptfunc)()
+    	scriptfunc()
     end
 end)
 end
