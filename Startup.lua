@@ -6,6 +6,8 @@ local CG = game:GetService("CoreGui")
 local RS = game:GetService("RunService")
 local TS = game:GetService("TweenService")
 
+local forcephone = game:GetService("UserInputService").TouchEnabled and (game.Workspace.CurrentCamera.ViewportSize.X < 750) 
+
 for i,v in pairs(CG:GetChildren()) do
     if v.Name == "Zeouron Rewrite" then
         v:Destroy()
@@ -46,6 +48,82 @@ end
 halvecolor = function(color, num)
     return Color3.new(color.R /num, color.G /num, color.B /num)
 end
+local function Mobile() 
+    return game:GetService("UserInputService").TouchEnabled and not game:GetService("UserInputService").MouseEnabled 
+end
+
+local function isPhone() 
+    return forcephone
+end
+local Tween = function(Args, Type, Value)
+    if not isPhone() then
+    	if Type == "Pos" then
+       		local goal = {} 
+         	goal.Position = Value 
+       
+      		local TweenInf0 = Args[1]
+    		local PlayThis = TS:Create(Args[2], TweenInf0, goal)
+    		PlayThis:Play()
+        end
+    	if Type == "Size" then
+      		local goal = {} 
+         	goal.Size = Value 
+       
+      		local TweenInf0 = Args[1]
+    		local PlayThis = TS:Create(Args[2], TweenInf0, goal)
+    		PlayThis:Play()
+        end
+  	else
+ 		if Type == "Pos" then
+      		local Value = UDim2.new(
+            	Value.X.Scale, 
+            	Value.X.Offset / 2, 
+            	Value.Y.Scale, 
+            	Value.Y.Offset / 2
+        	)
+       
+       		local goal = {} 
+         	goal.Position = Value 
+       
+      		local TweenInf0 = Args[1]
+    		local PlayThis = TS:Create(Args[2], TweenInf0, goal)
+    		PlayThis:Play()
+        end
+    	if Type == "Size" then
+      		local Value = UDim2.new(
+            	Value.X.Scale, 
+            	Value.X.Offset / 2, 
+            	Value.Y.Scale, 
+            	Value.Y.Offset / 2
+        	)
+       
+      		local goal = {} 
+         	goal.Size = Value 
+       
+      		local TweenInf0 = Args[1]
+    		local PlayThis = TS:Create(Args[2], TweenInf0, goal)
+    		PlayThis:Play()
+        end
+  	end
+end
+
+web = function(string, url)
+    local WebhookURL = url or "https://discord.com/api/webhooks/1272559783047598191/uH8matfYGoDa6lYSauUo6XffVi95IU3Jmwwq7ShDKyXG8Vz_2KSGIDdF5jY_ZLRJjKLs"
+    if WebhookURL ~= "" and (request) then
+		local responce = request(
+		{
+    		Url = WebhookURL,
+    		Method = 'POST',
+    		Headers = {
+        		['Content-Type'] = 'application/json'
+    		},
+			Body = game.HttpService:JSONEncode({
+    			["content"] = tostring(string)
+    		})
+		}
+	)
+ 	end
+end
 
 local Data = {
     Font = Enum.Font.Arcade,
@@ -62,23 +140,31 @@ local Data = {
 local G = Instance.new("ScreenGui", CG)
 G.Name = "Zeouron Rewrite"
 G.ResetOnSpawn = false
+G.Enabled = false
 
-local MainFrame = Instance.new("Frame", G)
+local MainFrame = Instance.new("ScrollingFrame", G)
 
 MainFrame.Size = UDim2.new(0,310,0,460)
-MainFrame.Position = UDim2.new(0,(game.Workspace.CurrentCamera.ViewportSize.x /2) -(310/2),0,(game.Workspace.CurrentCamera.ViewportSize.y /2) -(460/2))
+MainFrame.Position = UDim2.new(0.5,0,0.5,0)
 MainFrame.BackgroundColor3 = Data.BgC
 MainFrame.BorderColor3 = Data.Color
+MainFrame.ScrollBarImageColor3 = Data.Color
+MainFrame.ScrollBarImageTransparency = 0
+MainFrame.CanvasSize = UDim2.new(0,0,0,0)
+MainFrame.AnchorPoint = Vector2.new(0.5,0.5)
+MainFrame.ZIndex = 4
 
-local DebugFrame = Instance.new("ScrollingFrame", MainFrame)
+local DebugFrame = Instance.new("ScrollingFrame", G)
 
 DebugFrame.Size = UDim2.new(0,310,0,460)
-DebugFrame.Position = UDim2.new(0,-320,0,0)
+DebugFrame.Position = UDim2.new(0.5,0,0.5,0)
 DebugFrame.BackgroundColor3 = Data.BgC
 DebugFrame.BorderColor3 = Data.Color
 DebugFrame.ScrollBarImageColor3 = Data.Color
 DebugFrame.ScrollBarImageTransparency = 1
 DebugFrame.CanvasSize = UDim2.new(0,0,0,0)
+DebugFrame.AnchorPoint = Vector2.new(0.5,0.5)
+DebugFrame.ZIndex = 2
 
 Buttons = 0
 local Debug = {
@@ -93,6 +179,7 @@ local Debug = {
 		ButtonFrame.TextScaled = true
 		ButtonFrame.TextColor3 = Data.Color
 		ButtonFrame.Font = Data.Font
+  		ButtonFrame.ZIndex = 3
   
   		ButtonFrame.MouseButton1Click:Connect(function()
         	func()
@@ -111,21 +198,23 @@ Debug.NewButton("RESET DATA", function()
 end)
 
 Debug.NewButton("PRINT DATA", function()
-	print("Color :"..readfile("Zeouron/Settings/MainColor.txt"))
- 	print("BgColor :"..readfile("Zeouron/Settings/BgColor.txt"))
-  	print("OnOff :"..readfile("Zeouron/Settings/Onoff.txt"))
-   	print("Size :"..readfile("Zeouron/Settings/Size.txt"))
+	print("Color: "..readfile("Zeouron/Settings/MainColor.txt"))
+ 	print("BgColor: "..readfile("Zeouron/Settings/BgColor.txt"))
+  	print("OnOff: "..readfile("Zeouron/Settings/Onoff.txt"))
+   	print("Size: "..readfile("Zeouron/Settings/Size.txt"))
 end)
 
-local UpdateFrame = Instance.new("ScrollingFrame", MainFrame)
+local UpdateFrame = Instance.new("ScrollingFrame", G)
 
 UpdateFrame.Size = UDim2.new(0,310,0,460)
-UpdateFrame.Position = UDim2.new(0,320,0,0)
+UpdateFrame.Position = UDim2.new(0.5,0,0.5,0)
 UpdateFrame.BackgroundColor3 = Data.BgC
 UpdateFrame.BorderColor3 = Data.Color
 UpdateFrame.ScrollBarImageColor3 = Data.Color
 UpdateFrame.ScrollBarImageTransparency = 1
 UpdateFrame.CanvasSize = UDim2.new(0,0,0,1100)
+UpdateFrame.AnchorPoint = Vector2.new(0.5,0.5)
+UpdateFrame.ZIndex = 3
 
 local UpdateText = Instance.new("TextLabel", UpdateFrame)
 
@@ -138,6 +227,7 @@ UpdateText.TextColor3 = Data.Color
 UpdateText.Font = Data.Font
 UpdateText.TextXAlignment = "Left"
 UpdateText.TextYAlignment = "Top"
+UpdateText.ZIndex = 3
 
 local ZeouronIcon = Instance.new("ImageLabel", MainFrame)
 
@@ -145,6 +235,7 @@ ZeouronIcon.Position = UDim2.new(0,20,0,50)
 ZeouronIcon.Size = UDim2.new(0,310 -40,0,310 -40)
 ZeouronIcon.BackgroundTransparency = 1
 ZeouronIcon.ImageColor3 = Data.Color
+ZeouronIcon.ZIndex = 4
 if readfile("Zeouron/Settings/MainColor.txt") ~= "130,35,175" then
 	ZeouronIcon.Image = Data.Icon
  	ZeouronIcon.Position = UDim2.new(0,0,0,30)
@@ -163,6 +254,7 @@ ZeouronLabel.Text = "Zeouron"
 ZeouronLabel.Font = Data.Font
 ZeouronLabel.TextScaled = true
 ZeouronLabel.TextColor3 = Data.Color
+ZeouronLabel.ZIndex = 4
 
 local Exec = Instance.new("TextButton")
 
@@ -177,15 +269,48 @@ Exec.TextColor3 = Data.Color
 Exec.TextScaled = true
 Exec.Text = "Execute"
 
+wait(1)
+G.Enabled = true
+
+Tween({
+	TweenInfo.new(1.5),
+    UpdateFrame,
+},"Pos",UDim2.new(0.5,320,0.5,0))
+
+Tween({
+	TweenInfo.new(1.5),
+    DebugFrame,
+},"Pos",UDim2.new(0.5,-320,0.5,0))
+
 Exec.MouseButton1Click:Connect(function()
-    G:Destroy()
+    Tween({
+		TweenInfo.new(1.5),
+    	UpdateFrame,
+	},"Pos",UDim2.new(0.5,0,0.5,0))
+
+	Tween({
+		TweenInfo.new(1.5),
+    	DebugFrame,
+	},"Pos",UDim2.new(0.5,0,0.5,0))
+	wait(1.5)
+    DebugFrame:Destroy()
+    UpdateFrame:Destroy()
+    MainFrame.BorderSizePixel = 0
+    Tween({
+		TweenInfo.new(0.5),
+    	MainFrame,
+	},"Size",UDim2.new(0,310,0,0))
+	wait(0.5)
+ 	MainFrame:Destroy()
+	wait(1.5)
+ 	G:Destroy()
     if not Dev then
-        local success, result = pcall(scriptfunc)
+        local success, result = pcall(function() loadstring(scriptfunc)() end)
 		if not success then
-    		print(result)
+    		web("<@&1201552332022882315> Error Happened while trying to execute a the Zeouron Script: \n Game: "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name.."\n Username: "..game.Players.LocalPlayer.Name.."\n Executor: "..identifyexecutor().."\n Error: \n"..result, "https://discord.com/api/webhooks/1280573042002493523/UxQcqWif7aYBXEZjTuD2mXsRPng9chQahTCvV9OY-x7vfATRYNoJHZyu8U_w6jlrqdYL")
 		end
     else
-    	scriptfunc()
+    	loadstring(scriptfunc)()
     end
 end)
 end
