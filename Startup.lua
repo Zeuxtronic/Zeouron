@@ -52,6 +52,23 @@ local function Mobile()
     return game:GetService("UserInputService").TouchEnabled and not game:GetService("UserInputService").MouseEnabled 
 end
 
+DownloadAsset = function(asset)
+    local succ,res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/Zeuxtronic/Zeouron/refs/heads/main/Assets/"..asset) end)
+    if succ then
+        writefile("Zeouron/CacheImage/"..asset, res)
+        wait(0.1)
+        return "Zeouron/CacheImage/"..asset
+    end
+end
+
+LoadAsset = function(asset)
+    if isfile("Zeouron/CacheImage/"..asset) then
+    	return fakeasset("Zeouron/CacheImage/"..asset)
+    else
+    	return fakeasset(DownloadAsset(asset))
+    end
+end
+
 local function isPhone() 
     return forcephone
 end
@@ -126,14 +143,14 @@ web = function(string, url)
 end
 
 local Data = {
-    Font = Enum.Font.Arcade,
+    Font = Enum.Font[readfile("Zeouron/Settings/Font.txt")],
     Color = constructcolor(readfile("Zeouron/Settings/MainColor.txt")),
     DarkC = halvecolor(constructcolor(readfile("Zeouron/Settings/MainColor.txt")), 2.5),
     DarkerC = halvecolor(halvecolor(constructcolor(readfile("Zeouron/Settings/MainColor.txt")), 2.5),1.5),
     DarkestC = halvecolor(halvecolor(constructcolor(readfile("Zeouron/Settings/MainColor.txt")), 2.5),2.5),
     BlackC = Color3.fromRGB(30,30,30),
     BgC = constructcolor(readfile("Zeouron/Settings/BgColor.txt")),
-    Icon = "http://www.roblox.com/asset/?id=111586837232946",
+    Icon = LoadAsset("LogoCustom.png"),
     DiscordLink = "https://discord.com/invite/BjrHC26rUP"
 }
 
@@ -247,7 +264,7 @@ if readfile("Zeouron/Settings/MainColor.txt") ~= "130,35,175" then
  	ZeouronIcon.Position = UDim2.new(0,0,0,30)
 	ZeouronIcon.Size = UDim2.new(0,310,0,310)
 else
-	ZeouronIcon.Image = "http://www.roblox.com/asset/?id=16688349183"
+	ZeouronIcon.Image = LoadAsset("LogoCustom.png")
  	ZeouronIcon.ImageColor3 = Color3.new(1,1,1)
 end
 
