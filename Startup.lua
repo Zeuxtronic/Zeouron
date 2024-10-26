@@ -261,11 +261,10 @@ ZeouronIcon.ImageColor3 = Data.Color
 ZeouronIcon.ZIndex = 4
 if readfile("Zeouron/Settings/MainColor.txt") ~= "130,35,175" then
 	ZeouronIcon.Image = Data.Icon
- 	ZeouronIcon.ImageColor3 = Data.Color
  	ZeouronIcon.Position = UDim2.new(0,0,0,30)
 	ZeouronIcon.Size = UDim2.new(0,310,0,310)
 else
-	ZeouronIcon.Image = LoadAsset("LogoCustom.png")
+	ZeouronIcon.Image = LoadAsset("LogoMain.png")
  	ZeouronIcon.ImageColor3 = Color3.new(1,1,1)
 end
 
