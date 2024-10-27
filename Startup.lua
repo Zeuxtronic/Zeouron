@@ -60,7 +60,6 @@ DownloadAsset = function(asset)
         return "Zeouron/CacheImage/"..asset
     end
 end
-
 LoadAsset = function(asset)
     if isfile("Zeouron/CacheImage/"..asset) then
     	return fakeasset("Zeouron/CacheImage/"..asset)
@@ -235,13 +234,13 @@ UpdateFrame.BackgroundColor3 = Data.BgC
 UpdateFrame.BorderColor3 = Data.Color
 UpdateFrame.ScrollBarImageColor3 = Data.Color
 UpdateFrame.ScrollBarImageTransparency = 1
-UpdateFrame.CanvasSize = UDim2.new(0,0,0,1100)
+UpdateFrame.CanvasSize = UDim2.new(0,1100,0,10199)
 UpdateFrame.AnchorPoint = Vector2.new(0.5,0.5)
 UpdateFrame.ZIndex = 3
 
 local UpdateText = Instance.new("TextLabel", UpdateFrame)
 
-UpdateText.Size = UDim2.new(0,310,0,999)
+UpdateText.Size = UDim2.new(0,999,0,9999)
 UpdateText.Position = UDim2.new(0,17,0,10)
 UpdateText.BackgroundTransparency = 1
 UpdateText.Text = game:HttpGet('https://raw.githubusercontent.com/Zeuxtronic/Zeouron/main/CurrentUpdate.lua')
