@@ -7,10 +7,10 @@ Update 1.3
 [+] New animations
 
 Improved the RGD script heavily:
-	[+] Added "Auto Box"
- 	[+] Added "Auto Kill Shopkeepers"
-  	[+] Added "Autoclicker"
-   	[+] Added "AutoEquipBest"
+    [+] Added "Auto Box"
+    [+] Added "Auto Kill Shopkeepers"
+    [+] Added "Autoclicker"
+    [+] Added "AutoEquipBest"
     [+] Added "AutoHeal"
     [+] Added "Enable PotionUI"
     [+] Added "SwordReach"
