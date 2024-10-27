@@ -10,7 +10,7 @@ Improved the RGD script heavily:
     [+] Added "Auto Box"
     [+] Added "Auto Kill Shopkeepers"
     [+] Added "Autoclicker"
-    [+] Added "AutoEquipBest"
+	[+] Added "AutoEquipBest"
     [+] Added "AutoHeal"
     [+] Added "Enable PotionUI"
     [+] Added "SwordReach"
