@@ -263,8 +263,24 @@ return {
     	arrow.Image = "http://www.roblox.com/asset/?id=16287321997"
     	arrow.ZIndex = 11
     	arrow.ImageColor3 = Color3.fromRGB(130,130,130)
+     	arrow.Rotation = 180
      
      	local Buttons = 0
+     	local TabOpened = true
+     	arrow.MouseButton1Click:Connect(function()
+        	if TabOpened then
+            	TabsContainer.Visible = false
+             	TabFrame.Size = UDim2.new(0,175,0,30)
+              	TabOpened = false
+               	arrow.Rotation = 0
+            else
+            	TabsContainer.Visible = true
+            	TabFrame.Size = UDim2.new(0,175,0,Buttons *30 +30)
+             	TabOpened = true
+              	arrow.Rotation = 180
+            end
+        end)
+
      	return {
         	NewButton = function(name, func)
              	Buttons += 1
@@ -354,7 +370,7 @@ return {
             	Buttons += 1
               	TabFrame.Size = UDim2.new(0,175,0,Buttons *30 +30)
              
-            	local ButtonFrame = Instance.new("Frame", TabFrame)
+            	local ButtonFrame = Instance.new("Frame", TabsContainer)
        			ButtonFrame.Position = UDim2.new(0,0,0,Buttons *30)
         		ButtonFrame.Size = UDim2.new(0,175,0,30)
         		ButtonFrame.BackgroundTransparency = 1
