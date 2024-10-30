@@ -486,7 +486,11 @@ return {
                     end
               	end
            
-           		LoadTable("", TableReturn)
+           		if typeof(TableReturn) == "table" then
+           			LoadTable("", TableReturn)
+              	else
+               		LoadTable("", TableReturn())
+             	end
        
           		TextFrame.MouseButton1Click:Connect(function()
               		if Dropper.Visible then
