@@ -50,7 +50,7 @@ Data = {
 }
 end
 
-local forcephone = game:GetService("UserInputService").TouchEnabled and (game.Workspace.CurrentCamera.ViewportSize.X < 750)
+local forcephone = game:GetService("UserInputService").TouchEnabled and (game.Workspace.CurrentCamera.ViewportSize.Y < 460) 
 local function isPhone() 
     return forcephone
 end
